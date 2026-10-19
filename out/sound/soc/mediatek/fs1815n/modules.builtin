@@ -1,0 +1,3 @@
+kernel/sound/soc/mediatek/fs1815n/fsm_core.ko
+kernel/sound/soc/mediatek/fs1815n/fs1815.ko
+kernel/sound/soc/mediatek/fs1815n/fsm_i2c.ko

@@ -1,0 +1,6 @@
+kernel/drivers/gpu/drm/panel/panel-nt36672d-tianma-fhdp-dsi-vdo-90hz.ko
+kernel/drivers/gpu/drm/panel/panel-nt36672c-tianma-fhdp-dsi-vdo-90hz.ko
+kernel/drivers/gpu/drm/panel/panel-nt36672c-truly-fhdp-dsi-vdo-90hz.ko
+kernel/drivers/gpu/drm/panel/panel-nt35695b-auo-vdo.ko
+kernel/drivers/gpu/drm/panel/panel-ft8722-tianma-fhdp-dsi-vdo-90hz.ko
+kernel/drivers/gpu/drm/panel/panel-nt36672c-truly2-fhdp-dsi-vdo-90hz.ko
