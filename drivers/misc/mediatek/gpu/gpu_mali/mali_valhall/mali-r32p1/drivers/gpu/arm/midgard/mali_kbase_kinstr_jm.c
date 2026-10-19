@@ -626,8 +626,8 @@ exit:
  * * -EBADF - the file descriptor did not have an attached reader
  * * -EINVAL - the IO control arguments were invalid
  */
-static __poll_t reader_poll(struct file *const file,
-			    struct poll_table_struct *const wait)
+static unsigned int reader_poll(struct file *const file,
+				struct poll_table_struct *const wait)
 {
 	struct reader *reader;
 	struct reader_changes *changes;

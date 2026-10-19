@@ -62,7 +62,14 @@
 #include <linux/aio.h>
 #endif
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 16, 0)
-#include <linux/iversion.h>
+#define USE_NEW_IVERSION_API
+#define INC_IVERSION(x) inode_inc_iversion(x)
+#define GET_IVERSION(x) (inode_peek_iversion_raw(x))
+#define SET_IVERSION(x, y) inode_set_iversion(x, y)
+#else
+#define INC_IVERSION(x) (x->i_version++)
+#define GET_IVERSION(x) (x->i_version)
+#define SET_IVERSION(x, y) (x->i_version = y)
 #endif
 #include <linux/parser.h>
 #include <linux/uio.h>
@@ -101,14 +108,18 @@ extern struct timezone sys_tz;
 #endif
 
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 16, 0)
+/* Forced compatibility for 4.14 tree */
+/* Forced compatibility for 4.14 tree - no iversion.h */
+#define inode_inc_iversion(inode)       do { (inode)->i_version++; } while (0)
+#define inode_set_iversion(inode, val)  do { (inode)->i_version = (val); } while (0)
+#define inode_peek_iversion_raw(inode) ((inode)->i_version)
+#define inode_query_iversion(inode)     ((inode)->i_version)
+#define inode_eq_iversion(inode, ver)   ((inode)->i_version == (ver))
+
 #define USE_NEW_IVERSION_API
-#define INC_IVERSION(x) (inode_inc_iversion(x))
+#define INC_IVERSION(x) inode_inc_iversion(x)
 #define GET_IVERSION(x) (inode_peek_iversion_raw(x))
-#define SET_IVERSION(x, y) (inode_set_iversion(x, y))
-#else
-#define INC_IVERSION(x) (x->i_version++)
-#define GET_IVERSION(x) (x->i_version)
-#define SET_IVERSION(x, y) (x->i_version = y)
+#define SET_IVERSION(x, y) inode_set_iversion(x, y)
 #endif
 
 #define CHECK_ERR(x)	BUG_ON(x)

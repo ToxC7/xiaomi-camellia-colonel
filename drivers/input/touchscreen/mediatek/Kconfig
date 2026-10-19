@@ -80,6 +80,7 @@ config TOUCHSCREEN_MTK_GSLX680
 
 config TOUCHSCREEN_MTK_NT36xxx
 	bool "NT36xxx for Mediatek package"
+	depends on !TOUCHSCREEN_NT36672C
 	default n
 	help
 	  Say Y here if you have NT36xxx touch panel.
